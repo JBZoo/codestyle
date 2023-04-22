@@ -11,18 +11,18 @@
     @see        https://github.com/JBZoo/Codestyle
 -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
-         cacheDirectory="build/phpunit.cache"
          bootstrap="tests/autoload.php"
+         verbose="true"
          colors="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-    <coverage>
+    <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>
         <report>
             <clover outputFile="build/coverage_xml/main.xml"/>
-            <html outputDirectory="build/coverage_html" lowUpperBound="75" highLowerBound="95"/>
+            <html outputDirectory="build/coverage_html"/>
             <php outputFile="build/coverage_cov/main.cov"/>
             <text outputFile="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
         </report>

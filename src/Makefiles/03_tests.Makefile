@@ -29,7 +29,7 @@ test-phpunit: ##@Tests PHPUnit - Launch General Tests
 
 test-phpunit-teamcity:
 	@echo "##teamcity[progressStart 'PHPUnit Tests']"
-	@XDEBUG_MODE=coverage $(VENDOR_BIN)/phpunit --teamcity
+	@$(VENDOR_BIN)/phpunit --teamcity
 	@$(CO_CI_REPORT_BIN) teamcity:stats                             \
         --input-format="phpunit-clover-xml"                         \
         --input-file="$(PATH_BUILD)/coverage_xml/main.xml"
@@ -40,11 +40,11 @@ test-phpunit-teamcity:
 
 
 test-phpunit-local:
-	@XDEBUG_MODE=coverage $(VENDOR_BIN)/phpunit
+	@$(VENDOR_BIN)/phpunit
 
 
 test-phpunit-ga:
-	@-XDEBUG_MODE=coverage $(VENDOR_BIN)/phpunit
+	@$(VENDOR_BIN)/phpunit
 	@for f in `find ./build/coverage_junit -type f -name "*.xml"`;  \
     do                                                              \
         $(CO_CI_REPORT_BIN) convert                                 \
@@ -260,12 +260,12 @@ test-phpmnd-ga:
 test-phpcpd: ##@Tests PHPcpd - Find obvious Copy&Paste
 	$(call title,"PHPcpd - Find obvious Copy\&Paste")
 	$(call download_phar,$(PHPCPD_PHAR),"phpcpd")
-	@-XDEBUG_MODE=off $(VENDOR_BIN)/phpcpd.phar "$(PATH_SRC)"
+	@$(VENDOR_BIN)/phpcpd.phar "$(PATH_SRC)"
 
 
 test-phpcpd-teamcity:
 	$(call download_phar,$(PHPCPD_PHAR),"phpcpd")
-	@-XDEBUG_MODE=off $(VENDOR_BIN)/phpcpd.phar $(PATH_SRC) --log-pmd="$(PATH_BUILD)/phpcpd.xml"
+	@$(VENDOR_BIN)/phpcpd.phar $(PATH_SRC) --log-pmd="$(PATH_BUILD)/phpcpd.xml"
 	@echo ""
 	@echo "##teamcity[importData type='pmdCpd' path='$(PATH_BUILD)/phpcpd.xml' verbose='true']"
 	@echo ""
@@ -273,7 +273,7 @@ test-phpcpd-teamcity:
 
 test-phpcpd-ga:
 	$(call download_phar,$(PHPCPD_PHAR),"phpcpd")
-	@-XDEBUG_MODE=off $(VENDOR_BIN)/phpcpd.phar $(PATH_SRC) --log-pmd="$(PATH_BUILD)/phpcpd.xml" > /dev/null
+	@$(VENDOR_BIN)/phpcpd.phar $(PATH_SRC) --log-pmd="$(PATH_BUILD)/phpcpd.xml" > /dev/null
 	@$(CO_CI_REPORT_BIN) convert                  \
         --input-file="$(PATH_BUILD)/phpcpd.xml"   \
         --input-format=pmd-cpd                    \

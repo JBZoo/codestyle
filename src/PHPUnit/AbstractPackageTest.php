@@ -29,6 +29,7 @@ abstract class AbstractPackageTest extends PHPUnit
     use TraitCopyright;
     use TraitGithubActions;
     use TraitOtherTests;
+    use TraitPHPUnit;
     use TraitReadme;
 
     // ### Other properties. ###########################################################################################

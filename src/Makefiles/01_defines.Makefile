@@ -24,8 +24,6 @@ PATH_BIN       ?= $(PATH_ROOT)/bin
 PATH_BUILD     ?= $(PATH_ROOT)/build
 PATH_TESTS     ?= $(PATH_ROOT)/tests
 
-XDEBUG_OFF     ?= no
-
 CI_REPORT        ?= tc-tests
 CI_REPORT_MND    ?= tc-inspections
 CI_NON_ZERO_CODE ?= no
